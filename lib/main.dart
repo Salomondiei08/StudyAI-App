@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:supabase_auth_ui/supabase_auth_ui.dart';
 import 'screens/login_screen.dart';
 import 'theme/app_theme.dart';
 

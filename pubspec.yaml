@@ -9,12 +9,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_image_stack: ^0.0.6
   google_fonts: ^4.0.4
   logger: ^1.3.0
   provider: ^6.0.5
   responsive_sizer: ^3.1.1
   step_progress_indicator: ^1.0.2
-  flutter_image_stack: ^0.0.6
+  supabase_auth_ui: ^0.1.0+2
+  supabase_flutter: ^1.9.2
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -24,4 +26,4 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-     - images/
+    - images/
