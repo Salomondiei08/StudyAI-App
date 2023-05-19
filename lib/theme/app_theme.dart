@@ -30,7 +30,7 @@ class AppTheme {
 
 // App Colors
 
-  static Color ligthGray = const Color(0xffF5F5F8);
+  static Color ligthGray = Color.fromARGB(255, 252, 252, 243);
   static Color mediumGray = const Color(0xff1A1818);
 
   static Color darkBlue = const Color(0xff27354B);

@@ -21,7 +21,9 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: bodyItems[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar:
+       BottomNavigationBar(
+        type: BottomNavigationBarType.shifting,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white.withOpacity(.60),
         currentIndex: currentIndex,
@@ -47,10 +49,11 @@ class _MainScreenState extends State<MainScreen> {
               label: "Recommandation",
               backgroundColor: Colors.lightBlue),
         ],
-        onTap: (index) => {
-          setState(() => {currentIndex = index})
-        },
+        onTap: (index) => {setState(() => currentIndex = index)},
       ),
-    );
+    
+    
+    )
+    ;
   }
 }
