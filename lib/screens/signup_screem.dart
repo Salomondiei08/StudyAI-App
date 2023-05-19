@@ -3,19 +3,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:study_ai/theme/app_theme.dart';
 import 'package:supabase_auth_ui/supabase_auth_ui.dart';
-
-import '../widgets/action_text.dart';
 import '../widgets/app_textfield.dart';
 import '../widgets/main_button.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -35,10 +33,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               SizedBox(
-                height: 12.h,
+                height: 9.h,
               ),
               Text(
-                'Welcome,',
+                'Create an account',
                 style: GoogleFonts.roboto(
                     color: AppTheme.darkBlue,
                     fontSize: 24.sp,
@@ -53,11 +51,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: AppTheme.darkBlue.withOpacity(0.8), fontSize: 17.sp),
               ),
               SizedBox(
-                height: 8.h,
+                height: 5.h,
+              ),
+              const AppTextField(
+                labelText: 'Name',
+              ),
+              SizedBox(
+                height: 3.h,
               ),
               const AppTextField(
                 labelText: 'Email',
-                iconData: Icons.email,
+                iconData: Icons.email_outlined,
               ),
               SizedBox(
                 height: 3.h,
@@ -68,21 +72,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 obscureText: true,
               ),
               SizedBox(
-                height: 4.h,
-              ),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  ActionText(
-                    text: "Forgot password ?",
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 4.h,
+                height: 6.h,
               ),
               const MainButton(
-                text: 'LOGIN',
+                text: 'SIGN UP',
               ),
               SizedBox(
                 height: 3.h,
@@ -91,21 +84,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Don\' have an account yet ?',
+                    'Or login with',
                     style: GoogleFonts.roboto(
                       fontWeight: FontWeight.bold,
                       fontSize: 16.sp,
                     ),
                   ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  const ActionText(text: "Register")
                 ],
               ),
               Container(
                 decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                    BoxDecoration(borderRadius: BorderRadius.circular(30)),
                 child: SupaSocialsAuth(
                   socialProviders: const [
                     SocialProviders.google,
