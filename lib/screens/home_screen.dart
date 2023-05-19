@@ -25,467 +25,30 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppTheme.ligthGray,
       body: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            color: AppTheme.ligthGray,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0),
-            child: Column(
-              children: [
-                // header
-                BuildHeader(
-                  username: 'User',
-                ),
-                //Flashcards section
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child: Container(
-                      // color: Colors.red,
-                      child: Column(
-                        children: [
-                          // section header
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Flash Cards',
-                                style: kDisplayH1,
-                              ),
-                              Text(
-                                'see more',
-                                style: kDisplaySeeMore,
-                              )
-                            ],
-                          ),
-                          // Flashcards set body
-                          SizedBox(
-                            height: 17.h,
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 14.0),
-                              child: ListView(
-                                scrollDirection: Axis.horizontal,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 10.0),
-                                    child: Container(
-                                      width: 55.w,
-                                      decoration: BoxDecoration(
-                                        color: Colors.blue,
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 14),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            //card title
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text(
-                                                  'Biologie',
-                                                  style: kDisplayCardH1,
-                                                ),
-                                                IconButton(
-                                                  icon: isToggled
-                                                      ? const Icon(Icons
-                                                          .bookmark_outline)
-                                                      : const Icon(
-                                                          Icons
-                                                              .bookmark_outlined,
-                                                          color: Colors.red,
-                                                        ),
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      isToggled = !isToggled;
-                                                    });
-                                                  },
-                                                )
-                                              ],
-                                            ),
-                                            // card number items & progressbar
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  '19 Items',
-                                                  style: kDisplayCardH3,
-                                                ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                const StepProgressIndicator(
-                                                  totalSteps: 10,
-                                                  currentStep: 6,
-                                                  size: 7,
-                                                  padding: 0,
-                                                  roundedEdges:
-                                                      Radius.circular(10),
-                                                  selectedGradientColor:
-                                                      LinearGradient(
-                                                    begin: Alignment.topLeft,
-                                                    end: Alignment.bottomRight,
-                                                    colors: [
-                                                      Colors.green,
-                                                      Colors.green,
-                                                    ],
-                                                  ),
-                                                  unselectedGradientColor:
-                                                      LinearGradient(
-                                                    begin: Alignment.topLeft,
-                                                    end: Alignment.bottomRight,
-                                                    colors: [
-                                                      Colors.white,
-                                                      Colors.white
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            SizedBox(
-                                              height: 1.h,
-                                            ),
-                                            // user access flashcard
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 10.0),
-                                              child: Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  FlutterImageStack.providers(
-                                                    providers: listIimages,
-                                                    showTotalCount: true,
-                                                    totalCount: 6,
-                                                    itemRadius:
-                                                        25, // Radius of each images
-                                                    itemCount:
-                                                        3, // Maximum number of images to be shown in stack
-                                                    itemBorderWidth:
-                                                        1, // Border width around the images
-                                                    extraCountTextStyle:
-                                                        const TextStyle(
-                                                      fontSize: 14,
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    width: 5.w,
-                                                  ),
-                                                  Container(
-                                                    height: 3.h,
-                                                    width: 15.w,
-                                                    decoration: BoxDecoration(
-                                                        color: Colors.orange,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(20)),
-                                                    child: const Row(
-                                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                      children: [
-                                                        Center(
-                                                          child: Icon(
-                                                            Icons.add,
-                                                            color: Colors.green,
-                                                          ),
-                                                        ),
-                                                        Text('ADD'),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 10.0),
-                                    child: Container(
-                                      width: 55.w,
-                                      decoration: BoxDecoration(
-                                        color: Colors.blue,
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 10),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            //card title
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text(
-                                                  'Biologie',
-                                                  style: kDisplayCardH1,
-                                                ),
-                                                IconButton(
-                                                  icon: isToggled
-                                                      ? const Icon(Icons
-                                                          .favorite_border_outlined)
-                                                      : const Icon(
-                                                          Icons.favorite,
-                                                          color:
-                                                              Colors.redAccent,
-                                                        ),
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      isToggled = !isToggled;
-                                                    });
-                                                  },
-                                                )
-                                              ],
-                                            ),
-                                            // card number items & progressbar
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  '19 Items',
-                                                  style: kDisplayCardH3,
-                                                ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                const StepProgressIndicator(
-                                                  totalSteps: 10,
-                                                  currentStep: 6,
-                                                  size: 6,
-                                                  padding: 0,
-                                                  roundedEdges:
-                                                      Radius.circular(10),
-                                                  selectedGradientColor:
-                                                      LinearGradient(
-                                                    begin: Alignment.topLeft,
-                                                    end: Alignment.bottomRight,
-                                                    colors: [
-                                                      Colors.green,
-                                                      Colors.green,
-                                                    ],
-                                                  ),
-                                                  unselectedGradientColor:
-                                                      LinearGradient(
-                                                    begin: Alignment.topLeft,
-                                                    end: Alignment.bottomRight,
-                                                    colors: [
-                                                      Colors.white,
-                                                      Colors.white
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            const SizedBox(
-                                              height: 6,
-                                            ),
-                                            Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                FlutterImageStack.providers(
-                                                  providers: listIimages,
-                                                  showTotalCount: true,
-                                                  totalCount: 6,
-                                                  itemRadius:
-                                                      35, // Radius of each images
-                                                  itemCount:
-                                                      2, // Maximum number of images to be shown in stack
-                                                  itemBorderWidth:
-                                                      5, // Border width around the images
-                                                ),
-                                                SizedBox(
-                                                  width: 3.w,
-                                                ),
-                                                Container(
-                                                  height: 25,
-                                                  width: 10.w,
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.orange,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20)),
-                                                  child: const Center(
-                                                    child: Icon(
-                                                      Icons.add,
-                                                      color: Colors.green,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 10.0),
-                                    child: Container(
-                                      width: 55.w,
-                                      decoration: BoxDecoration(
-                                        color: Colors.blue,
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 10),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            //card title
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text(
-                                                  'Biologie',
-                                                  style: kDisplayCardH1,
-                                                ),
-                                                IconButton(
-                                                  icon: isToggled
-                                                      ? const Icon(Icons
-                                                          .favorite_border_outlined)
-                                                      : const Icon(
-                                                          Icons.favorite,
-                                                          color:
-                                                              Colors.redAccent,
-                                                        ),
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      isToggled = !isToggled;
-                                                    });
-                                                  },
-                                                )
-                                              ],
-                                            ),
-                                            // card number items & progressbar
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  '19 Items',
-                                                  style: kDisplayCardH3,
-                                                ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                                const StepProgressIndicator(
-                                                  totalSteps: 10,
-                                                  currentStep: 6,
-                                                  size: 6,
-                                                  padding: 0,
-                                                  roundedEdges:
-                                                      Radius.circular(10),
-                                                  selectedGradientColor:
-                                                      LinearGradient(
-                                                    begin: Alignment.topLeft,
-                                                    end: Alignment.bottomRight,
-                                                    colors: [
-                                                      Colors.green,
-                                                      Colors.green,
-                                                    ],
-                                                  ),
-                                                  unselectedGradientColor:
-                                                      LinearGradient(
-                                                    begin: Alignment.topLeft,
-                                                    end: Alignment.bottomRight,
-                                                    colors: [
-                                                      Colors.white,
-                                                      Colors.white
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            const SizedBox(
-                                              height: 6,
-                                            ),
-                                            Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                FlutterImageStack.providers(
-                                                  providers: listIimages,
-                                                  showTotalCount: true,
-                                                  totalCount: 6,
-                                                  itemRadius:
-                                                      35, // Radius of each images
-                                                  itemCount:
-                                                      2, // Maximum number of images to be shown in stack
-                                                  itemBorderWidth:
-                                                      5, // Border width around the images
-                                                ),
-                                                SizedBox(
-                                                  width: 3.w,
-                                                ),
-                                                Container(
-                                                  height: 25,
-                                                  width: 10.w,
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.orange,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20)),
-                                                  child: const Center(
-                                                    child: Icon(Icons.add),
-                                                  ),
-                                                ),
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                //Articles section
-                Expanded(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15.0),
+          child: Column(
+            children: [
+              // header
+              BuildHeader(
+                username: 'User',
+              ),
+              //Flashcards section
+              Padding(
+                padding: const EdgeInsets.only(bottom: 0.0),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10.0),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Articles header
+                      // section header
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            'Articles',
+                            'Flash Cards',
                             style: kDisplayH1,
                           ),
                           Text(
@@ -494,101 +57,598 @@ class _HomeScreenState extends State<HomeScreen> {
                           )
                         ],
                       ),
-                      // Articles body
+                      // Flashcards set body
                       SizedBox(
-                        height: 20.5.h,
-                        child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: [
-                            // aricles items
-                            BuildArticleSection(
-                              autor: 'Michel adjetey - 2 days ago',
-                              title: 'How to learn \nFlutter in 2023',
-                              description:
-                                  "Major updates to graphics performance, web integration, developer productivity and security in Flutter 3.10",
-                              articleImage: 'images/profile.jpg',
-                            ),
-                            BuildArticleSection(
-                              autor: 'Michel adjetey - 2 days ago',
-                              title: 'How to learn \nFlutter in 2023',
-                              description:
-                                  "Major updates to graphics performance, web integration, developer productivity and security in Flutter 3.10",
-                              articleImage: 'images/profile.jpg',
-                            ),
-                            BuildArticleSection(
-                              autor: 'Michel adjetey - 2 days ago',
-                              title: 'How to learn \nFlutter in 2023',
-                              description:
-                                  "Major updates to graphics performance, web integration, developer productivity and security in Flutter 3.10",
-                              articleImage: 'images/profile.jpg',
-                            ),
-                          ],
+                        height: 17.h,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 14.0),
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 10.0),
+                                child: Container(
+                                  width: 55.w,
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFFF7497D),
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 14),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        //card title
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              'Biologie',
+                                              style: kDisplayCardH1,
+                                            ),
+                                            IconButton(
+                                              icon: isToggled
+                                                  ? const Icon(
+                                                      Icons.bookmark_outline,
+                                                      color: Colors.white,
+                                                    )
+                                                  : const Icon(
+                                                      Icons.bookmark_outlined,
+                                                      color: Colors.white,
+                                                    ),
+                                              onPressed: () {
+                                                setState(() {
+                                                  isToggled = !isToggled;
+                                                });
+                                              },
+                                            )
+                                          ],
+                                        ),
+                                        // card number items & progressbar
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              '19 Items',
+                                              style: kDisplayCardH3,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            const StepProgressIndicator(
+                                              totalSteps: 10,
+                                              currentStep: 6,
+                                              size: 7,
+                                              padding: 0,
+                                              roundedEdges: Radius.circular(10),
+                                              selectedGradientColor:
+                                                  LinearGradient(
+                                                begin: Alignment.topLeft,
+                                                end: Alignment.bottomRight,
+                                                colors: [
+                                                  Colors.green,
+                                                  Colors.green,
+                                                ],
+                                              ),
+                                              unselectedGradientColor:
+                                                  LinearGradient(
+                                                begin: Alignment.topLeft,
+                                                end: Alignment.bottomRight,
+                                                colors: [
+                                                  Colors.white,
+                                                  Colors.white
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 1.h,
+                                        ),
+                                        // user access flashcard
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              bottom: 10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              FlutterImageStack.providers(
+                                                providers: listIimages,
+                                                showTotalCount: true,
+                                                totalCount: 6,
+                                                itemRadius:
+                                                    25, // Radius of each images
+                                                itemCount:
+                                                    3, // Maximum number of images to be shown in stack
+                                                itemBorderWidth:
+                                                    1, // Border width around the images
+                                                extraCountTextStyle:
+                                                    const TextStyle(
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: 5.w,
+                                              ),
+                                              // add button
+                                              Container(
+                                                height: 3.h,
+                                                width: 15.w,
+                                                decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8)),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceAround,
+                                                  children: [
+                                                    const Center(
+                                                      child: Icon(
+                                                        Icons.add,
+                                                        color: Colors.green,
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              right: 5.0),
+                                                      child: Text(
+                                                        'ADD',
+                                                        style:
+                                                            kDisplayArticleH6,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 10.0),
+                                child: Container(
+                                  width: 55.w,
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFF31B5FF),
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 14),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        //card title
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              'Biologie',
+                                              style: kDisplayCardH1,
+                                            ),
+                                            IconButton(
+                                              icon: isToggled
+                                                  ? const Icon(
+                                                      Icons.bookmark_outline,
+                                                      color: Colors.white,
+                                                    )
+                                                  : const Icon(
+                                                      Icons.bookmark_outlined,
+                                                      color: Colors.white,
+                                                    ),
+                                              onPressed: () {
+                                                setState(() {
+                                                  isToggled = !isToggled;
+                                                });
+                                              },
+                                            )
+                                          ],
+                                        ),
+                                        // card number items & progressbar
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              '19 Items',
+                                              style: kDisplayCardH3,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            const StepProgressIndicator(
+                                              totalSteps: 10,
+                                              currentStep: 6,
+                                              size: 7,
+                                              padding: 0,
+                                              roundedEdges: Radius.circular(10),
+                                              selectedGradientColor:
+                                                  LinearGradient(
+                                                begin: Alignment.topLeft,
+                                                end: Alignment.bottomRight,
+                                                colors: [
+                                                  Colors.green,
+                                                  Colors.green,
+                                                ],
+                                              ),
+                                              unselectedGradientColor:
+                                                  LinearGradient(
+                                                begin: Alignment.topLeft,
+                                                end: Alignment.bottomRight,
+                                                colors: [
+                                                  Colors.white,
+                                                  Colors.white
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 1.h,
+                                        ),
+                                        // user access flashcard
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              bottom: 10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              FlutterImageStack.providers(
+                                                providers: listIimages,
+                                                showTotalCount: true,
+                                                totalCount: 6,
+                                                itemRadius:
+                                                    25, // Radius of each images
+                                                itemCount:
+                                                    3, // Maximum number of images to be shown in stack
+                                                itemBorderWidth:
+                                                    1, // Border width around the images
+                                                extraCountTextStyle:
+                                                    const TextStyle(
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: 5.w,
+                                              ),
+                                              // add button
+                                              Container(
+                                                height: 3.h,
+                                                width: 15.w,
+                                                decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8)),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceAround,
+                                                  children: [
+                                                    const Center(
+                                                      child: Icon(
+                                                        Icons.add,
+                                                        color: Colors.green,
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              right: 5.0),
+                                                      child: Text(
+                                                        'ADD',
+                                                        style:
+                                                            kDisplayArticleH6,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 10.0),
+                                child: Container(
+                                  width: 55.w,
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFFF7497D),
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 14),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        //card title
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              'Biologie',
+                                              style: kDisplayCardH1,
+                                            ),
+                                            IconButton(
+                                              icon: isToggled
+                                                  ? const Icon(
+                                                      Icons.bookmark_outline,
+                                                      color: Colors.white,
+                                                    )
+                                                  : const Icon(
+                                                      Icons.bookmark_outlined,
+                                                      color: Colors.white,
+                                                    ),
+                                              onPressed: () {
+                                                setState(() {
+                                                  isToggled = !isToggled;
+                                                });
+                                              },
+                                            )
+                                          ],
+                                        ),
+                                        // card number items & progressbar
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              '19 Items',
+                                              style: kDisplayCardH3,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            const StepProgressIndicator(
+                                              totalSteps: 10,
+                                              currentStep: 6,
+                                              size: 7,
+                                              padding: 0,
+                                              roundedEdges: Radius.circular(10),
+                                              selectedGradientColor:
+                                                  LinearGradient(
+                                                begin: Alignment.topLeft,
+                                                end: Alignment.bottomRight,
+                                                colors: [
+                                                  Colors.green,
+                                                  Colors.green,
+                                                ],
+                                              ),
+                                              unselectedGradientColor:
+                                                  LinearGradient(
+                                                begin: Alignment.topLeft,
+                                                end: Alignment.bottomRight,
+                                                colors: [
+                                                  Colors.white,
+                                                  Colors.white
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 1.h,
+                                        ),
+                                        // user access flashcard
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              bottom: 10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              FlutterImageStack.providers(
+                                                providers: listIimages,
+                                                showTotalCount: true,
+                                                totalCount: 6,
+                                                itemRadius:
+                                                    25, // Radius of each images
+                                                itemCount:
+                                                    3, // Maximum number of images to be shown in stack
+                                                itemBorderWidth:
+                                                    1, // Border width around the images
+                                                extraCountTextStyle:
+                                                    const TextStyle(
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: 5.w,
+                                              ),
+                                              // add button
+                                              Container(
+                                                height: 3.h,
+                                                width: 15.w,
+                                                decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8)),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceAround,
+                                                  children: [
+                                                    const Center(
+                                                      child: Icon(
+                                                        Icons.add,
+                                                        color: Colors.green,
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              right: 5.0),
+                                                      child: Text(
+                                                        'ADD',
+                                                        style:
+                                                            kDisplayArticleH6,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
-                //Recommandation section
-                Expanded(
-                  flex: 1,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child: Container(
-                      child: Column(
+              ),
+              //Articles section
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Articles header
+                  SizedBox(
+                    height: 1.h,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Articles',
+                        style: kDisplayH1,
+                      ),
+                      Text(
+                        'see more',
+                        style: kDisplaySeeMore,
+                      )
+                    ],
+                  ),
+                  // Articles body
+                  Padding(
+                    padding: const EdgeInsets.only(top: 14.0),
+                    child: SizedBox(
+                      height: 19.h,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
                         children: [
-                          // container header
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Video content',
-                                style: kDisplayH1,
-                              ),
-                              Text(
-                                'see more',
-                                style: kDisplaySeeMore,
-                              )
-                            ],
+                          // aricles items
+                          BuildArticleSection(
+                            autor: 'Michel adjetey - 2 days ago',
+                            title: 'How to learn \nFlutter in 2023',
+                            description:
+                                "Major updates to graphics performance, web integration, developer productivity and security in Flutter 3.10",
+                            articleImage: 'images/profile.jpg',
                           ),
-                          // container body
-                          Expanded(
-                              child: Padding(
-                            padding: const EdgeInsets.only(top: 14),
-                            child: ListView(
-                              scrollDirection: Axis.horizontal,
-                              children: [
-                                VideoContent(
-                                  videoAsset: 'images/profile.jpg',
-                                  profileImage: 'images/profile.jpg',
-                                  title:
-                                      'The power of AI in the\nlife of student',
-                                  videoInfo: 'Salomon Diei -  1 day ago',
-                                ),
-                                VideoContent(
-                                  videoAsset: 'images/profile.jpg',
-                                  profileImage: 'images/profile.jpg',
-                                  title:
-                                      'The power of AI in the\nlife of student',
-                                  videoInfo: 'Salomon Diei -  1 day ago',
-                                ),
-                                VideoContent(
-                                  videoAsset: 'images/profile.jpg',
-                                  profileImage: 'images/profile.jpg',
-                                  title:
-                                      'The power of AI in the\nlife of student',
-                                  videoInfo: 'Salomon Diei -  1 day ago',
-                                ),
-                              ],
-                            ),
-                          ))
+                          BuildArticleSection(
+                            autor: 'Michel adjetey - 2 days ago',
+                            title: 'How to learn \nFlutter in 2023',
+                            description:
+                                "Major updates to graphics performance, web integration, developer productivity and security in Flutter 3.10",
+                            articleImage: 'images/profile.jpg',
+                          ),
+                          BuildArticleSection(
+                            autor: 'Michel adjetey - 2 days ago',
+                            title: 'How to learn \nFlutter in 2023',
+                            description:
+                                "Major updates to graphics performance, web integration, developer productivity and security in Flutter 3.10",
+                            articleImage: 'images/profile.jpg',
+                          ),
                         ],
                       ),
                     ),
+                  )
+                ],
+              ),
+              //Recommandation section
+              Expanded(
+                flex: 1,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10.0, bottom: 2),
+                  child: Column(
+                    children: [
+                      // container header
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Video content',
+                            style: kDisplayH1,
+                          ),
+                          Text(
+                            'see more',
+                            style: kDisplaySeeMore,
+                          )
+                        ],
+                      ),
+                      // container body
+                      Expanded(
+                          child: Padding(
+                        padding: const EdgeInsets.only(top: 14),
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            VideoContent(
+                              videoAsset: 'images/profile.jpg',
+                              profileImage: 'images/profile.jpg',
+                              title: 'The power of AI in the\nlife of student',
+                              videoInfo: 'Salomon Diei -  1 day ago',
+                            ),
+                            VideoContent(
+                              videoAsset: 'images/profile.jpg',
+                              profileImage: 'images/profile.jpg',
+                              title: 'The power of AI in the\nlife of student',
+                              videoInfo: 'Salomon Diei -  1 day ago',
+                            ),
+                            VideoContent(
+                              videoAsset: 'images/profile.jpg',
+                              profileImage: 'images/profile.jpg',
+                              title: 'The power of AI in the\nlife of student',
+                              videoInfo: 'Salomon Diei -  1 day ago',
+                            ),
+                          ],
+                        ),
+                      ))
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -613,11 +673,11 @@ class VideoContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 10.0),
+      padding: const EdgeInsets.only(right: 30.0, left: 30.0, bottom: 5),
       child: Container(
-        width: 55.w,
+        width: 75.w,
         decoration: BoxDecoration(
-          color: Colors.white70,
+          color: Colors.white,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
@@ -646,21 +706,24 @@ class VideoContent extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     // video owner pic
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        image: DecorationImage(
-                          image: AssetImage(profileImage),
-                          fit: BoxFit.cover,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          image: DecorationImage(
+                            image: AssetImage(profileImage),
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
-                    SizedBox(width: 2.w),
+                    SizedBox(width: 4.w),
                     // Display video information
                     Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // video title
@@ -668,7 +731,7 @@ class VideoContent extends StatelessWidget {
                         // video upload date
                         Text(
                           videoInfo,
-                          style: kDisplayArticleH6,
+                          style: kDisplayvideoH6,
                         ),
                       ],
                     ),
@@ -699,43 +762,48 @@ class BuildArticleSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 10.0),
+      padding: const EdgeInsets.only(top: 1.0, left: 2, right: 15, bottom: 5),
       child: Container(
         width: 60.w,
         decoration: BoxDecoration(
-          color: Colors.white70,
+          color: Colors.white,
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: AppTheme.borderColor,
-            width: 2,
-          ),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black,
+              blurRadius: 5.0,
+              spreadRadius: 0.0,
+              offset: Offset(0.0, 3.0), // shadow direction: bottom right
+            )
+          ],
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(autor, style: kDisplayArticleH6),
               // article info
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(autor, style: kDisplayArticleH6),
-                      Text(title, style: kDisplayArticleH1),
-                    ],
+                  Expanded(
+                    flex: 2,
+                    child: Text(title, style: kDisplayArticleH1),
                   ),
                   // image
-                  Container(
-                    width: 70,
-                    height: 70,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7),
-                      image: DecorationImage(
-                        image: AssetImage(articleImage),
-                        fit: BoxFit.cover,
+                  Expanded(
+                    child: Container(
+                      width: 70,
+                      height: 70,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(7),
+                        image: DecorationImage(
+                          image: AssetImage(articleImage),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
@@ -745,6 +813,8 @@ class BuildArticleSection extends StatelessWidget {
               Text(
                 description,
                 style: kDisplayArticleH4,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 3,
               ),
             ],
           ),
