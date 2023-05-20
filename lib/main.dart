@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:supabase_auth_ui/supabase_auth_ui.dart';
-import 'screens/login_screen.dart';
+import 'screens/main_screen.dart';
 import 'theme/app_theme.dart';
 
 void main() async {
@@ -34,7 +34,7 @@ class MainApp extends StatelessWidget {
           title: "Study-AI",
           theme: ThemeData(textTheme: AppTheme.lightTexTheme),
           home: const Scaffold(
-            body: LoginScreen(),
+            body: MainScreen(),
           ),
         );
       }

@@ -5,6 +5,9 @@ import '../theme/app_theme.dart';
 import '../utils/constants.dart';
 import 'package:flutter_image_stack/flutter_image_stack.dart';
 
+import '../widgets/article_section.dart';
+import '../widgets/video_content.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -32,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               // header
-              BuildHeader(
+              const BuildHeader(
                 username: 'User',
               ),
               //Flashcards section
@@ -565,7 +568,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 19.h,
                       child: ListView(
                         scrollDirection: Axis.horizontal,
-                        children: [
+                        children: const [
                           // aricles items
                           BuildArticleSection(
                             autor: 'Michel adjetey - 2 days ago',
@@ -622,7 +625,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: const EdgeInsets.only(top: 14),
                         child: ListView(
                           scrollDirection: Axis.horizontal,
-                          children: [
+                          children: const [
                             VideoContent(
                               videoAsset: 'images/profile.jpg',
                               profileImage: 'images/profile.jpg',
@@ -656,180 +659,15 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class VideoContent extends StatelessWidget {
-  String videoAsset;
-  String profileImage;
-  String title;
-  String videoInfo;
 
-  VideoContent({
-    super.key,
-    required this.videoAsset,
-    required this.profileImage,
-    required this.title,
-    required this.videoInfo,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 30.0, left: 30.0, bottom: 5),
-      child: Container(
-        width: 75.w,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // video card
-            Expanded(
-                flex: 2,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
-                    ),
-                    image: DecorationImage(
-                      image: AssetImage(videoAsset),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                )),
-            // video description
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    // video owner pic
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          image: DecorationImage(
-                            image: AssetImage(profileImage),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 4.w),
-                    // Display video information
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // video title
-                        Text(title, style: kDisplayvideoH1),
-                        // video upload date
-                        Text(
-                          videoInfo,
-                          style: kDisplayvideoH6,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class BuildArticleSection extends StatelessWidget {
-  String autor;
-  String title;
-  String description;
-  String articleImage;
-
-  BuildArticleSection(
-      {super.key,
-      required this.autor,
-      required this.title,
-      required this.description,
-      required this.articleImage});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 1.0, left: 2, right: 15, bottom: 5),
-      child: Container(
-        width: 60.w,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black,
-              blurRadius: 5.0,
-              spreadRadius: 0.0,
-              offset: Offset(0.0, 3.0), // shadow direction: bottom right
-            )
-          ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(autor, style: kDisplayArticleH6),
-              // article info
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child: Text(title, style: kDisplayArticleH1),
-                  ),
-                  // image
-                  Expanded(
-                    child: Container(
-                      width: 70,
-                      height: 70,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(7),
-                        image: DecorationImage(
-                          image: AssetImage(articleImage),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              // article description
-              Text(
-                description,
-                style: kDisplayArticleH4,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 3,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
 
 class BuildHeader extends StatelessWidget {
-  String username;
-  BuildHeader({
+
+  const BuildHeader({
     super.key,
     required this.username,
   });
+  final String username;
 
   @override
   Widget build(BuildContext context) {

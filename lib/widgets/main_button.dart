@@ -10,7 +10,7 @@ class MainButton extends StatelessWidget {
     super.key,
   });
 
-final String text;
+  final String text;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -18,7 +18,11 @@ final String text;
         decoration: BoxDecoration(
           color: AppTheme.darkBlue,
           boxShadow: const [
-            BoxShadow(color: Colors.grey, offset: Offset(1, 5), blurRadius: 3),
+            BoxShadow(
+              color: Colors.grey,
+              offset: Offset(1, 5),
+              blurRadius: 3,
+            ),
           ],
           borderRadius: BorderRadius.circular(20),
         ),
@@ -43,4 +47,3 @@ final String text;
     );
   }
 }
-
