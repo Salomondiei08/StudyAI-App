@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../widgets/article_section.dart';
 import '../theme/app_theme.dart';
 import '../utils/constants.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../widgets/ressource_article_section.dart';
 import '../widgets/video_content.dart';
 
 class RecommandationScreen extends StatefulWidget {
@@ -92,42 +92,37 @@ class _RecommandationScreenState extends State<RecommandationScreen> {
                   Text(
                     'see more',
                     style: kDisplaySeeMore,
-                  )
+                  ),
                 ],
               ),
             ),
-            
             const Padding(
-              padding: EdgeInsets.only(top:20.0),
-              child: BuildArticleSection(
-                autor: 'Michel adjetey - 2 days ago',
+              padding: EdgeInsets.symmetric(vertical: 10.0),
+              child: BuildRessArticleSection(
+                autor: 'Michel adjetey',
                 title: 'How to learn \nFlutter in 2023',
-                description:
-                    "Major updates to graphics performance, web integration, developer productivity and security in Flutter 3.10",
+                date: '2 days ago - 20 min long',
                 articleImage: 'images/profile.jpg',
               ),
             ),
             const Padding(
-              padding: EdgeInsets.only(top:20.0),
-              child: BuildArticleSection(
-                autor: 'Michel adjetey - 2 days ago',
+              padding: EdgeInsets.symmetric(vertical: 10.0),
+              child: BuildRessArticleSection(
+                autor: 'Michel adjetey',
                 title: 'How to learn \nFlutter in 2023',
-                description:
-                    "Major updates to graphics performance, web integration, developer productivity and security in Flutter 3.10",
+                date: '2 days ago - 20 min long',
                 articleImage: 'images/profile.jpg',
               ),
             ),
             const Padding(
-              padding: EdgeInsets.only(top:20.0),
-              child: BuildArticleSection(
-                autor: 'Michel adjetey - 2 days ago',
+              padding: EdgeInsets.symmetric(vertical: 10.0),
+              child: BuildRessArticleSection(
+                autor: 'Michel adjetey',
                 title: 'How to learn \nFlutter in 2023',
-                description:
-                    "Major updates to graphics performance, web integration, developer productivity and security in Flutter 3.10",
+                date: '2 days ago - 20 min long',
                 articleImage: 'images/profile.jpg',
               ),
             ),
-            
           ],
         ),
       ),

@@ -25,10 +25,10 @@ class _FlashCardScreenState extends State<FlashCardScreen> {
       ),
       body: GridView.count(
         crossAxisCount: 2,
-        children: [
-          const FlashCardSet(icon: Icons.add_circle_outline,cardName: "New Flashcard", type: "add",),
-          const FlashCardSet(icon: Icons.add_circle_outline,cardName: "Biologie",),
-          const FlashCardSet(icon: Icons.add_circle_outline,cardName: "Open AI",),
+        children: const[
+           FlashCardSet(icon: Icons.add_circle_outline,cardName: "New Flashcard", type: "add",),
+           FlashCardSet(icon: Icons.add_circle_outline,cardName: "Biologie",),
+           FlashCardSet(icon: Icons.add_circle_outline,cardName: "Open AI",),
         ],
       ),
     );

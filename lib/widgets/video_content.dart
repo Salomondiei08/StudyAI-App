@@ -43,7 +43,7 @@ class VideoContent extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
-                )),
+                ),),
             // video description
             Expanded(
               child: Padding(

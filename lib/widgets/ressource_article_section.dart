@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../utils/constants.dart';
 
-class BuildArticleSection extends StatelessWidget {
+class BuildRessArticleSection extends StatelessWidget {
   final String autor;
   final String title;
-  final String description;
+  final String date;
   final String articleImage;
 
-  const BuildArticleSection(
+  const BuildRessArticleSection(
       {super.key,
       required this.autor,
+      required this.date,
       required this.title,
-      required this.description,
       required this.articleImage});
 
   @override
@@ -24,21 +24,36 @@ class BuildArticleSection extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.grey,
-              blurRadius: 5.0,
-              offset: Offset(0.0, 3.0), // shadow direction: bottom right
-            )
-          ],
+          border: Border.all(
+            color: Colors.black,
+            width: 1,
+          ),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(autor, style: kDisplayArticleH6),
+              Row(
+                children: [
+                  const CircleAvatar(
+                    backgroundImage: AssetImage('images/profile.jpg'),
+                    radius: 15,
+                  ),
+                  SizedBox(
+                    width: 2.h,
+                  ),
+                  Text(
+                    autor,
+                    style: kDisplayArticleH4.copyWith(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black.withOpacity(.5),
+                    ),
+                  ),
+                ],
+              ),
               // article info
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -46,7 +61,12 @@ class BuildArticleSection extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 2,
-                    child: Text(title, style: kDisplayArticleH1),
+                    child: Text(
+                      title,
+                      style: kDisplayArticleH1.copyWith(
+                        color: const Color(0xff27354B),
+                      ),
+                    ),
                   ),
                   // image
                   Expanded(
@@ -66,8 +86,11 @@ class BuildArticleSection extends StatelessWidget {
               ),
               // article description
               Text(
-                description,
-                style: kDisplayArticleH4,
+                date,
+                style: kDisplayArticleH4.copyWith(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black.withOpacity(.5)),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 3,
               ),

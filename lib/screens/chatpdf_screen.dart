@@ -16,6 +16,7 @@ class ChatPdfScreen extends StatefulWidget {
 
 class _ChatPdfScreenState extends State<ChatPdfScreen> {
   bool loaded = false;
+  String fileName = '';
 
   // take file fonction
   void openFiles() async {
@@ -27,10 +28,10 @@ class _ChatPdfScreenState extends State<ChatPdfScreen> {
 
     if (resultFile != null) {
       PlatformFile file = resultFile.files.first;
-      // TODO : take the file name to create the namespace in picone
-      print(file.name);
+      
       setState(() {
         loaded = !loaded;
+        fileName = file.name;
       });
     } else {
       // User canceled the picker
@@ -95,11 +96,16 @@ class _ChatPdfScreenState extends State<ChatPdfScreen> {
                               )
                             :
                             // drop your pdf here
-                            Text(
-                                'GOOD JOB',
-                                style: kAppbarDisplayH2.copyWith(
-                                    fontSize: 15.sp, color: Colors.green),
-                              ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal:20.0),
+                              child: Text(
+                                  '$fileName file uploaded',
+                                  style: kAppbarDisplayH2.copyWith(
+                                      fontSize: 15.sp, color: Colors.green),
+                                      overflow: TextOverflow.ellipsis,
+                                      maxLines: 3,
+                                ),
+                            ),
                       ],
                     ),
                   ),

@@ -19,6 +19,7 @@ dependencies:
   supabase_flutter: ^1.9.2
   dotted_border: ^2.0.0+3
   file_picker: ^5.3.0
+  typewritertext: ^1.8.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0

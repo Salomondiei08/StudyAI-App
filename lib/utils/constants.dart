@@ -42,10 +42,9 @@ TextStyle kDisplayCardH6 = GoogleFonts.roboto(
 );
 
 TextStyle kDisplayArticleH1 = GoogleFonts.roboto(
-  fontSize: 18.sp,
-  fontWeight: FontWeight.bold,
-  color: const Color(0xFF497174)
-);
+    fontSize: 18.sp,
+    fontWeight: FontWeight.bold,
+    color: const Color(0xFF497174));
 
 TextStyle kDisplayArticleH4 = GoogleFonts.roboto(
   fontSize: 15.sp,
@@ -53,7 +52,7 @@ TextStyle kDisplayArticleH4 = GoogleFonts.roboto(
 
 TextStyle kDisplayArticleH6 = GoogleFonts.roboto(
   fontSize: 14.sp,
-  color: const Color(0x50131010),
+  color: const Color(0xff131010),
 );
 
 TextStyle kDisplayvideoH1 = GoogleFonts.roboto(
@@ -64,4 +63,14 @@ TextStyle kDisplayvideoH1 = GoogleFonts.roboto(
 TextStyle kDisplayvideoH6 = GoogleFonts.roboto(
   fontSize: 14.sp,
   color: const Color(0xFF797777),
+);
+
+TextStyle kChatText = GoogleFonts.roboto(
+  fontSize: 16.sp,
+  color: Colors.white,
+);
+
+InputBorder kChatInput = OutlineInputBorder(
+  borderRadius: BorderRadius.circular(20),
+  borderSide: const BorderSide(color: Color(0xff27354B)),
 );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'chat_screen.dart';
 import 'chatpdf_screen.dart';
 import 'flashcard_screen.dart';
 import 'home_screen.dart';
@@ -16,7 +17,7 @@ class _MainScreenState extends State<MainScreen> {
   List<Widget> bodyItems = const [
     HomeScreen(),
     FlashCardScreen(),
-    Center(child: Text("Page 3")),
+    ChatScreen(),
     ChatPdfScreen(),
     RecommandationScreen(),
   ];
