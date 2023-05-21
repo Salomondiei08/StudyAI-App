@@ -7,6 +7,7 @@ import '../utils/constants.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:dotted_border/dotted_border.dart';
 import '../widgets/main_button.dart';
+import 'summerize_pdf_screen.dart';
 
 class ChatPdfScreen extends StatefulWidget {
   const ChatPdfScreen({super.key});
@@ -128,8 +129,12 @@ class _ChatPdfScreenState extends State<ChatPdfScreen> {
                             builder: (context) => const PdfChatScreen()));
                       },
                     ),
-                    const MainButton(
+                    MainButton(
                       text: 'Summerize PDF',
+                      action:() {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const SummerizePdfScreen()));
+                      },
                     ),
                     const MainButton(
                       text: 'Flash PDF',

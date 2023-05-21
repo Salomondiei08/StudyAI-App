@@ -69,6 +69,10 @@ TextStyle kChatText = GoogleFonts.roboto(
   fontSize: 16.sp,
   color: Colors.white,
 );
+TextStyle kSummerizeText = GoogleFonts.roboto(
+  fontSize: 18.sp,
+  color: Colors.white,
+);
 
 InputBorder kChatInput = OutlineInputBorder(
   borderRadius: BorderRadius.circular(20),

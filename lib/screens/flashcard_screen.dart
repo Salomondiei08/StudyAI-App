@@ -3,7 +3,7 @@ import '../theme/app_theme.dart';
 import '../utils/constants.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import 'add_flashcard_items.dart';
+import '../widgets/add_flashcard_items.dart';
 
 class FlashCardScreen extends StatefulWidget {
   const FlashCardScreen({super.key});

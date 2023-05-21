@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:study_ai/theme/app_theme.dart';
 import '../utils/constants.dart';
-import '../widgets/add_card_textfield.dart';
-import '../widgets/add_flashcard_items_textfield.dart';
+import 'add_card_textfield.dart';
+import 'add_flashcard_items_textfield.dart';
 
 class AddFlashcardScreen extends StatefulWidget {
   const AddFlashcardScreen({super.key});
