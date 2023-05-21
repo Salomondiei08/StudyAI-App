@@ -7,12 +7,15 @@ import '../theme/app_theme.dart';
 class ActionText extends StatelessWidget {
   const ActionText({
     required this.text,
+    this.onTap,
     super.key,
   });
 final String text;
+final VoidCallback? onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: onTap,
       child: Text(text,
           style: GoogleFonts.roboto(
             fontSize: 16.sp,

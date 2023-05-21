@@ -6,14 +6,17 @@ import '../theme/app_theme.dart';
 
 class MainButton extends StatelessWidget {
   const MainButton({
-    required this.text,
+    required this.child,
+    this.onPressed,
     super.key,
   });
 
-final String text;
+final Widget child;
+final VoidCallback? onPressed;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: onPressed,
       child: Container(
         decoration: BoxDecoration(
           color: AppTheme.darkBlue,
@@ -29,13 +32,7 @@ final String text;
               const SizedBox(
                 width: double.infinity,
               ),
-              Text(
-                text,
-                style: GoogleFonts.roboto(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18.sp),
-              ),
+            child
             ],
           ),
         ),

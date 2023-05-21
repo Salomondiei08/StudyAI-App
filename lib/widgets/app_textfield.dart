@@ -6,12 +6,14 @@ class AppTextField extends StatelessWidget {
      this.iconData,
     this.textController,
     this.obscureText = false,
+    this.validator,
     super.key,
   });
   final String labelText;
   final IconData ?iconData;
   final bool obscureText;
   final TextEditingController? textController;
+  final String? Function(String?)? validator;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,7 +26,8 @@ class AppTextField extends StatelessWidget {
           ),
         ],
       ),
-      child: TextField(
+      child: TextFormField(
+        validator: validator,
         controller: textController,
         obscureText: obscureText,
         cursorColor: Colors.black,

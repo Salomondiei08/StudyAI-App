@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:social_login_buttons/social_login_buttons.dart';
 import 'package:study_ai/theme/app_theme.dart';
-import 'package:supabase_auth_ui/supabase_auth_ui.dart';
 import '../widgets/app_textfield.dart';
 import '../widgets/main_button.dart';
 
@@ -16,10 +16,10 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: AppTheme.ligthGray,
-        body: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: AppTheme.ligthGray,
+      body: SingleChildScrollView(
+        child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(25.0),
             child:
@@ -74,8 +74,15 @@ class _SignupScreenState extends State<SignupScreen> {
               SizedBox(
                 height: 6.h,
               ),
-              const MainButton(
-                text: 'SIGN UP',
+              MainButton(
+                child: Text(
+                  'SIGN UP',
+                  style: GoogleFonts.roboto(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18.sp),
+                ),
+                onPressed: () {},
               ),
               SizedBox(
                 height: 3.h,
@@ -92,21 +99,17 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ],
               ),
-              Container(
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(30)),
-                child: SupaSocialsAuth(
-                  socialProviders: const [
-                    SocialProviders.google,
-                  ],
-                  colored: true,
-                  onSuccess: (Session response) {
-                    // do something, for example: navigate('home');
-                  },
-                  onError: (error) {
-                    // do something, for example: navigate("wait_for_email");
-                  },
-                ),
+              const SizedBox(
+                height: 10,
+              ),
+              SocialLoginButton(
+                backgroundColor: Colors.white,
+                height: 7.h,
+                text: 'Google',
+                borderRadius: 20,
+                fontSize: 25,
+                buttonType: SocialLoginButtonType.google,
+                onPressed: () {},
               ),
             ]),
           ),
