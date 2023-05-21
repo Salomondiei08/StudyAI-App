@@ -5,6 +5,7 @@ import 'package:supabase_auth_ui/supabase_auth_ui.dart';
 import 'screens/main_screen.dart';
 import 'theme/app_theme.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
