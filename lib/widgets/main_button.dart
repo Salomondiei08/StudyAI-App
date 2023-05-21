@@ -8,12 +8,15 @@ class MainButton extends StatelessWidget {
   const MainButton({
     required this.text,
     super.key,
+    this.action
   });
 
   final String text;
+  final VoidCallback? action;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: action,
       child: Container(
         decoration: BoxDecoration(
           color: AppTheme.darkBlue,

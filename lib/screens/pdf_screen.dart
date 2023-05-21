@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:study_ai/screens/pdfchat_screen.dart';
 
 import '../theme/app_theme.dart';
 import '../utils/constants.dart';
@@ -28,7 +29,7 @@ class _ChatPdfScreenState extends State<ChatPdfScreen> {
 
     if (resultFile != null) {
       PlatformFile file = resultFile.files.first;
-      
+
       setState(() {
         loaded = !loaded;
         fileName = file.name;
@@ -97,15 +98,16 @@ class _ChatPdfScreenState extends State<ChatPdfScreen> {
                             :
                             // drop your pdf here
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal:20.0),
-                              child: Text(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20.0),
+                                child: Text(
                                   '$fileName file uploaded',
                                   style: kAppbarDisplayH2.copyWith(
                                       fontSize: 15.sp, color: Colors.green),
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 3,
                                 ),
-                            ),
+                              ),
                       ],
                     ),
                   ),
@@ -115,20 +117,24 @@ class _ChatPdfScreenState extends State<ChatPdfScreen> {
                 height: 10.h,
               ),
               // list button
-              const Expanded(
+              Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     MainButton(
                       text: 'PDF chat',
+                      action: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const PdfChatScreen()));
+                      },
                     ),
-                    MainButton(
+                    const MainButton(
                       text: 'Summerize PDF',
                     ),
-                    MainButton(
+                    const MainButton(
                       text: 'Flash PDF',
                     ),
-                    MainButton(
+                    const MainButton(
                       text: 'Quiz PDF',
                     ),
                   ],

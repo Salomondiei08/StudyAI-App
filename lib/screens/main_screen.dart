@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'chat_screen.dart';
-import 'chatpdf_screen.dart';
+import 'pdf_screen.dart';
 import 'flashcard_screen.dart';
 import 'home_screen.dart';
 import 'recommandation_screen.dart';
