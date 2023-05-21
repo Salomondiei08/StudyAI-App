@@ -65,19 +65,22 @@ class _SummerizePdfScreenState extends State<SummerizePdfScreen> {
               ),
             ),
             // button
-            Container(
-              height: 6.h,
-              width: 80.h,
-              decoration: BoxDecoration(
-                color: const Color(0xFF27354B),
-                borderRadius: BorderRadius.circular(50),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Center(
-                  child: Text(
-                    'Generate Flashcard',
-                    style: kDisplayArticleH1.copyWith(color: Colors.white),
+            InkWell(
+              onTap: (){},
+              child: Container(
+                height: 6.h,
+                width: 80.h,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF27354B),
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Center(
+                    child: Text(
+                      'Generate Flashcard',
+                      style: kDisplayArticleH1.copyWith(color: Colors.white),
+                    ),
                   ),
                 ),
               ),
