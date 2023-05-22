@@ -3,12 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:study_ai/providers/articles_provider.dart';
+import 'package:study_ai/providers/pdf_provider.dart';
 import 'package:study_ai/providers/video_provider.dart';
 import 'package:study_ai/screens/splash_screen.dart';
 import 'package:supabase_auth_ui/supabase_auth_ui.dart';
 import 'network/supa_base_client.dart';
 import 'theme/app_theme.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,8 +33,11 @@ class MainApp extends StatelessWidget {
           ChangeNotifierProvider(
             create: (_) => ArticleProvider(),
           ),
-           ChangeNotifierProvider(
+          ChangeNotifierProvider(
             create: (_) => VideoProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => PDFProvider(),
           ),
         ],
         builder: (context, widget) {

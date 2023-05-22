@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:typewritertext/typewritertext.dart';
+import '../providers/pdf_provider.dart';
 import '../theme/app_theme.dart';
 import '../utils/constants.dart';
 
@@ -12,8 +14,15 @@ class SummerizePdfScreen extends StatefulWidget {
 }
 
 class _SummerizePdfScreenState extends State<SummerizePdfScreen> {
+  PDFProvider pdfProvider = PDFProvider();
+  String content =
+      "La biologie est la science de la vie, qui étudie les organismes vivants et leur environnement. Elle se divise en plusieurs sous-disciplines, comme la génétique, l'écologie, la zoologie et la botanique. La biologie permet de comprendre comment les organismes fonctionnent, comment ils évoluent et comment ils interagissent avec leur environnement. Elle est essentielle pour de nombreux domaines, tels que la médecine, l'agriculture, l'environnement et la biotechnologie.";
+  @override
+  void initState() {
+    pdfProvider = Provider.of<PDFProvider>(context, listen: false);
 
-  String content= "La biologie est la science de la vie, qui étudie les organismes vivants et leur environnement. Elle se divise en plusieurs sous-disciplines, comme la génétique, l'écologie, la zoologie et la botanique. La biologie permet de comprendre comment les organismes fonctionnent, comment ils évoluent et comment ils interagissent avec leur environnement. Elle est essentielle pour de nombreux domaines, tels que la médecine, l'agriculture, l'environnement et la biotechnologie.";
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,30 +52,57 @@ class _SummerizePdfScreenState extends State<SummerizePdfScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             // summerise body
-            Container(
-              height: 70.h,
-              width: 80.h,
-              decoration: BoxDecoration(
-                color: const Color(0xFF27354B),
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: TypeWriterText(
-                    maintainSize: false,
-                    text: Text(
-                      content,
-                      style: kSummerizeText,
-                    ),
-                    duration: const Duration(milliseconds: 50),
-                  ),
-                ),
-              ),
+            FutureBuilder(
+              future: pdfProvider.initSummary(),
+              builder: (context, snapshot) {
+                switch (snapshot.connectionState) {
+                  case ConnectionState.none:
+                  case ConnectionState.waiting:
+                    return Center(
+                        child: CircularProgressIndicator(
+                      color: AppTheme.darkBlue,
+                    ));
+                  default:
+                    if (snapshot.hasError) {
+                      return Text("Error: ${snapshot.error}");
+                    } else if (!snapshot.hasData) {
+                      return SizedBox(
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              height: 70.h,
+                              width: 80.h,
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF27354B),
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(15),
+                                  child: TypeWriterText(
+                                    maintainSize: false,
+                                    text: Text(
+                                      pdfProvider.fileSummary!,
+                                      style: kSummerizeText,
+                                    ),
+                                    duration: const Duration(milliseconds: 50),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      );
+                    } else {
+                      return const Center(child: Text('An Error occured'));
+                    }
+                }
+              },
             ),
             // button
             InkWell(
-              onTap: (){},
+              onTap: () {},
               child: Container(
                 height: 6.h,
                 width: 80.h,

@@ -5,7 +5,7 @@ abstract class AppUrl {
   static const String getArticles = "${localBaseUrl}articles/";
   static const String getVideos = "${localBaseUrl}videos/";
 
-  static const String summerize = "${localBaseUrl}pdf/summarize/";
+  static const String summarize = "${localBaseUrl}pdf/summarize/";
   static const String getQuiz = "${localBaseUrl}pdf/quiz/";
   static const String getFlashcards = "${localBaseUrl}pdf/flashcards/";
   static const String loadPdf = "${localBaseUrl}pdf/load/";

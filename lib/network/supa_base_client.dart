@@ -131,25 +131,25 @@ class SupabaseManager {
     }
   }
 
-  Future<String?> uploadFile(context, { String? selectedFilePath, String? bucketName }) async {
+  Future<String?> uploadFile(context,
+      {String? selectedFilePath, String? bucketName}) async {
     try {
-
-      XFile selectedFile = XFile( selectedFilePath!);
+      XFile selectedFile = XFile(selectedFilePath!);
       final bytes = await selectedFile.readAsBytes();
       final fileExt = selectedFile.path.split('.').last;
       final fileName = '${DateTime.now().toIso8601String()}.$fileExt';
       final filePath = fileName;
       await client.storage.from(bucketName!).uploadBinary(
-            filePath,
+            selectedFile.name,
             bytes,
             fileOptions: FileOptions(contentType: selectedFile.mimeType),
           );
 
       final imageUrlResponse = await client.storage
           .from(bucketName)
-          .createSignedUrl(filePath, 60 * 60 * 24 * 365 * 10);
+          .createSignedUrl(selectedFile.name, 60 * 60 * 24 * 365 * 10);
 
-      debugPrint(imageUrlResponse);
+      debugPrint("Image link $imageUrlResponse");
 
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Upload successful'),

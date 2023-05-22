@@ -6,12 +6,14 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
+import 'package:provider/provider.dart';
 import 'package:study_ai/screens/pdfchat_screen.dart';
 import 'package:study_ai/screens/quizz_pdf_screen.dart';
 
 import '../network/app_urls.dart';
 import '../network/ko_exception.dart';
 import '../network/supa_base_client.dart';
+import '../providers/pdf_provider.dart';
 import '../theme/app_theme.dart';
 import '../utils/constants.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -28,17 +30,22 @@ class ChatPdfScreen extends StatefulWidget {
 }
 
 class _ChatPdfScreenState extends State<ChatPdfScreen> {
+  PDFProvider pdfProvider = PDFProvider();
   bool loaded = false;
   String fileName = '';
   String? fileLink;
   String? fileLinkOnServer;
   SupabaseManager supabaseManager = SupabaseManager();
   // take file fonction
+  @override
+  void initState() {
+    pdfProvider = Provider.of<PDFProvider>(context, listen: false);
+    super.initState();
+  }
 
   void openFiles() async {
     FilePickerResult? resultFile = await FilePicker.platform.pickFiles(
       type: FileType.custom,
-      //allowedExtensions: ['jpg', 'pdf'],
       allowedExtensions: ['pdf'],
     );
 
@@ -58,9 +65,11 @@ class _ChatPdfScreenState extends State<ChatPdfScreen> {
         if (response.statusCode == 200) {
           final dynamic data = json.decode(response.body);
           debugPrint("--- Response Data for docs : $data");
-          fileLinkOnServer = data['tempfile_path'];
+
+          pdfProvider.thumbnailLink = data['tempfile_path'];
         } else {
-          throw Exception('Could not parse response.');
+          throw Exception(
+              'Could not parse response. erroe code ${response.statusCode}');
         }
       } on DioError catch (e) {
         if (e.response != null && e.response!.statusCode != null) {
@@ -199,16 +208,16 @@ class _ChatPdfScreenState extends State<ChatPdfScreen> {
                       },
                     ),
                     MainButton(
-                      onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>const  QuizScreen())),
+                        onPressed: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) => const QuizScreen())),
                         child: Text(
-                      'Flash PDF',
-                      style: GoogleFonts.roboto(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18.sp),
-                          
-                    )),
+                          'Flash PDF',
+                          style: GoogleFonts.roboto(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18.sp),
+                        )),
                   ],
                 ),
               ),
