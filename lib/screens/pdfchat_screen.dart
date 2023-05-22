@@ -15,7 +15,7 @@ class PdfChatScreen extends StatefulWidget {
 class _PdfChatScreenState extends State<PdfChatScreen> {
   late bool isLoading;
   final List<ChatMessage> _messages = [];
-  TextEditingController _textController = TextEditingController();
+  final TextEditingController _textController = TextEditingController();
   final _scrollController = ScrollController();
 
   @override

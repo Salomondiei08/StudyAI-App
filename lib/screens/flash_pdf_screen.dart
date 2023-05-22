@@ -1,8 +1,8 @@
+import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../theme/app_theme.dart';
 import '../utils/constants.dart';
-import 'package:flip_card/flip_card.dart';
 
 class FlashPdfScreen extends StatefulWidget {
   const FlashPdfScreen({super.key});

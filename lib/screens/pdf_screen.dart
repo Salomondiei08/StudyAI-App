@@ -1,5 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:study_ai/screens/pdfchat_screen.dart';
 
 import '../theme/app_theme.dart';
@@ -124,29 +125,52 @@ class _ChatPdfScreenState extends State<ChatPdfScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     MainButton(
-                      text: 'PDF chat',
-                      action: () {
+                      child: Text(
+                        'chat',
+                        style: GoogleFonts.roboto(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.sp),
+                      ),
+                      onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => const PdfChatScreen()));
                       },
                     ),
                     MainButton(
-                      text: 'Summerize PDF',
-                      action:() {
+                      child: Text(
+                        'chat',
+                        style: GoogleFonts.roboto(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.sp),
+                      ),
+                      onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => const SummerizePdfScreen()));
                       },
                     ),
                     MainButton(
-                      text: 'Flash PDF',
-                      action:() {
+                      child: Text(
+                        'Flash PDF',
+                        style: GoogleFonts.roboto(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.sp),
+                      ),
+                      onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => const FlashPdfScreen()));
                       },
                     ),
-                    const MainButton(
-                      text: 'Quiz PDF',
-                    ),
+                    MainButton(
+                        child: Text(
+                      'Flash PDF',
+                      style: GoogleFonts.roboto(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18.sp),
+                    )),
                   ],
                 ),
               ),

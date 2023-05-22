@@ -15,7 +15,7 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   late bool isLoading;
   final List<ChatMessage> _messages = [];
-  TextEditingController _textController = TextEditingController();
+  final TextEditingController _textController = TextEditingController();
   final _scrollController = ScrollController();
 
   @override
