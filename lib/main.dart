@@ -9,6 +9,7 @@ import 'package:supabase_auth_ui/supabase_auth_ui.dart';
 import 'network/supa_base_client.dart';
 import 'theme/app_theme.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

@@ -24,6 +24,10 @@ dependencies:
   supabase_auth_ui: ^0.1.0+2
   supabase_flutter: ^1.9.2
   url_launcher: ^6.1.11
+  dotted_border: ^2.0.0+3
+  typewritertext: ^1.8.0
+  flip_card: ^0.7.0
+  page_view_dot_indicator: ^2.1.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0

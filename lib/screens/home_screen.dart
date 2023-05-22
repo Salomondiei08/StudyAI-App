@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               children: [
                 // header
-                BuildHeader(
+                const BuildHeader(
                   username: client.auth.currentUser!.email!.split('@').first,
                 ),
                 //Flashcards section
@@ -599,11 +599,12 @@ class BuildArticleSection extends StatelessWidget {
 }
 
 class BuildHeader extends StatelessWidget {
-  String username;
-  BuildHeader({
+
+  const BuildHeader({
     super.key,
     required this.username,
   });
+  final String username;
 
   @override
   Widget build(BuildContext context) {

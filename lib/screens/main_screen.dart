@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'chat_screen.dart';
+import 'pdf_screen.dart';
+import 'flashcard_screen.dart';
 import 'home_screen.dart';
+import 'recommandation_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -12,10 +16,10 @@ class _MainScreenState extends State<MainScreen> {
   int currentIndex = 0;
   List<Widget> bodyItems = const [
     HomeScreen(),
-    Center(child: Text("Page 2")),
-    Center(child: Text("Page 3")),
-    Center(child: Text("Page 4")),
-    Center(child: Text("Page 5")),
+    FlashCardScreen(),
+    ChatScreen(),
+    ChatPdfScreen(),
+    RecommandationScreen(),
   ];
   @override
   Widget build(BuildContext context) {

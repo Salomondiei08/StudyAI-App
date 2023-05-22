@@ -20,7 +20,11 @@ final VoidCallback? onPressed;
         decoration: BoxDecoration(
           color: AppTheme.darkBlue,
           boxShadow: const [
-            BoxShadow(color: Colors.grey, offset: Offset(1, 5), blurRadius: 3),
+            BoxShadow(
+              color: Colors.grey,
+              offset: Offset(1, 5),
+              blurRadius: 3,
+            ),
           ],
           borderRadius: BorderRadius.circular(20),
         ),
@@ -39,4 +43,3 @@ final VoidCallback? onPressed;
     );
   }
 }
-
