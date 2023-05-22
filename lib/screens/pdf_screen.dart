@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
 import 'package:study_ai/screens/pdfchat_screen.dart';
+import 'package:study_ai/screens/quizz_pdf_screen.dart';
 
 import '../network/app_urls.dart';
 import '../network/ko_exception.dart';
@@ -198,12 +199,15 @@ class _ChatPdfScreenState extends State<ChatPdfScreen> {
                       },
                     ),
                     MainButton(
+                      onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) =>const  QuizScreen())),
                         child: Text(
                       'Flash PDF',
                       style: GoogleFonts.roboto(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 18.sp),
+                          
                     )),
                   ],
                 ),

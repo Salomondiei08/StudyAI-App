@@ -74,6 +74,13 @@ TextStyle kSummerizeText = GoogleFonts.roboto(
   color: Colors.white,
 );
 
+TextStyle kQuizzQuestion = TextStyle(
+              color: Colors.white,
+              fontSize: 17.sp,
+              fontWeight: FontWeight.w500,
+            );
+
+            
 InputBorder kChatInput = OutlineInputBorder(
   borderRadius: BorderRadius.circular(20),
   borderSide: const BorderSide(color: Color(0xff27354B)),
