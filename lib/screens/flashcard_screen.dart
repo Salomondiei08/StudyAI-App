@@ -4,6 +4,7 @@ import '../utils/constants.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../widgets/add_flashcard_items.dart';
+import 'flashcard_items.dart';
 
 class FlashCardScreen extends StatefulWidget {
   const FlashCardScreen({super.key});
@@ -32,7 +33,9 @@ class _FlashCardScreenState extends State<FlashCardScreen> {
            FlashCardSet(icon: Icons.add_circle_outline,cardName: "New Flashcard", type: "add",action:(){
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => const AddFlashcardScreen()));
            },),
-           const FlashCardSet(icon: Icons.add_circle_outline,cardName: "Biologie",),
+           FlashCardSet(icon: Icons.add_circle_outline,cardName: "Biologie",action:(){
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const FlasCArdItemsScreen()));
+           },),
            const FlashCardSet(icon: Icons.add_circle_outline,cardName: "Open AI",),
         ],
       ),
