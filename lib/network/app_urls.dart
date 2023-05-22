@@ -8,6 +8,6 @@ abstract class AppUrl {
   static const String summerize = "${localBaseUrl}pdf/summarize/";
   static const String getQuiz = "${localBaseUrl}pdf/quiz/";
   static const String getFlashcards = "${localBaseUrl}pdf/flashcards/";
-  static const String load = "${localBaseUrl}pdf/load/";
+  static const String loadPdf = "${localBaseUrl}pdf/load/";
   static const String pdfChat = "${localBaseUrl}pdf/chat/";
 }

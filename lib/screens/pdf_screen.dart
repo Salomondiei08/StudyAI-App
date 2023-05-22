@@ -1,8 +1,16 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart';
 import 'package:study_ai/screens/pdfchat_screen.dart';
 
+import '../network/app_urls.dart';
+import '../network/ko_exception.dart';
+import '../network/supa_base_client.dart';
 import '../theme/app_theme.dart';
 import '../utils/constants.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -21,8 +29,11 @@ class ChatPdfScreen extends StatefulWidget {
 class _ChatPdfScreenState extends State<ChatPdfScreen> {
   bool loaded = false;
   String fileName = '';
-
+  String? fileLink;
+  String? fileLinkOnServer;
+  SupabaseManager supabaseManager = SupabaseManager();
   // take file fonction
+
   void openFiles() async {
     FilePickerResult? resultFile = await FilePicker.platform.pickFiles(
       type: FileType.custom,
@@ -37,6 +48,29 @@ class _ChatPdfScreenState extends State<ChatPdfScreen> {
         loaded = !loaded;
         fileName = file.name;
       });
+
+      fileLink = await supabaseManager.uploadFile(context,
+          selectedFilePath: file.path, bucketName: 'pdf');
+
+      try {
+        final response = await get(Uri.parse("${AppUrl.loadPdf}$fileLink"));
+        if (response.statusCode == 200) {
+          final dynamic data = json.decode(response.body);
+          debugPrint("--- Response Data for docs : $data");
+          fileLinkOnServer = data['tempfile_path'];
+        } else {
+          throw Exception('Could not parse response.');
+        }
+      } on DioError catch (e) {
+        if (e.response != null && e.response!.statusCode != null) {
+          throw KoException(
+            statusCode: e.response!.statusCode!,
+            message: e.response!.data.toString(),
+          );
+        } else {
+          throw Exception(e.message);
+        }
+      }
     } else {
       // User canceled the picker
     }

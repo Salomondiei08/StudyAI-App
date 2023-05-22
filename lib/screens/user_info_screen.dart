@@ -70,7 +70,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
       isPictureLoaded = true;
       photoFile = file;
 
-      photoUrl = await _supabaseClient.uploadImage(context, imageFile: image);
+      photoUrl = await _supabaseClient.uploadFile(context,
+          selectedFilePath: image.path, bucketName: 'profile_image');
     } else {
       // User canceled the picker
     }

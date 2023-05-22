@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../models/articles.dart';
+import '../models/video.dart';
+import '../providers/articles_provider.dart';
+import '../providers/video_provider.dart';
 import '../theme/app_theme.dart';
 import '../utils/constants.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -13,6 +18,16 @@ class RecommandationScreen extends StatefulWidget {
 }
 
 class _RecommandationScreenState extends State<RecommandationScreen> {
+  late ArticleProvider articles;
+  late VideoProvider videos;
+
+  @override
+  void initState() {
+    articles = Provider.of<ArticleProvider>(context, listen: false);
+    videos = Provider.of<VideoProvider>(context, listen: false);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,28 +67,38 @@ class _RecommandationScreenState extends State<RecommandationScreen> {
                   child: // container body
                       Padding(
                     padding: const EdgeInsets.only(top: 14),
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: const [
-                        VideoContent(
-                          videoAsset: 'images/profile.jpg',
-                          profileImage: 'images/profile.jpg',
-                          title: 'The power of AI in the\nlife of student',
-                          videoInfo: 'Salomon Diei -  1 day ago',
-                        ),
-                        VideoContent(
-                          videoAsset: 'images/profile.jpg',
-                          profileImage: 'images/profile.jpg',
-                          title: 'The power of AI in the\nlife of student',
-                          videoInfo: 'Salomon Diei -  1 day ago',
-                        ),
-                        VideoContent(
-                          videoAsset: 'images/profile.jpg',
-                          profileImage: 'images/profile.jpg',
-                          title: 'The power of AI in the\nlife of student',
-                          videoInfo: 'Salomon Diei -  1 day ago',
-                        ),
-                      ],
+                    child: FutureBuilder(
+                      future: articles.initArticles('Maths'),
+                      builder: (ctx, snapshot) {
+                        switch (snapshot.connectionState) {
+                          case ConnectionState.none:
+                          case ConnectionState.waiting:
+                            return Center(
+                                child: CircularProgressIndicator(
+                              color: AppTheme.darkBlue,
+                            ));
+                          default:
+                            if (snapshot.hasError) {
+                              return Text("Error: ${snapshot.error}");
+                            } else if (!snapshot.hasData) {
+                              return ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (context, index) {
+                                  List<Video> itemList = videos.allVideos;
+                                  return VideoContent(
+                                      url: itemList[index].url!,
+                                      videoAsset: itemList[index].thumnailUrl!,
+                                      profileImage: 'images/video.jpeg',
+                                      title: itemList[index].title!,
+                                      videoInfo: itemList[index].publishedAt!);
+                                },
+                              );
+                            } else {
+                              return const Center(
+                                  child: Text('An Error occured'));
+                            }
+                        }
+                      },
                     ),
                   ),
                 ),
@@ -89,38 +114,44 @@ class _RecommandationScreenState extends State<RecommandationScreen> {
                     'Articles and Classes',
                     style: kDisplayH1,
                   ),
-                  Text(
-                    'see more',
-                    style: kDisplaySeeMore,
-                  ),
                 ],
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.0),
-              child: BuildRessArticleSection(
-                autor: 'Michel adjetey',
-                title: 'How to learn \nFlutter in 2023',
-                date: '2 days ago - 20 min long',
-                articleImage: 'images/profile.jpg',
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.0),
-              child: BuildRessArticleSection(
-                autor: 'Michel adjetey',
-                title: 'How to learn \nFlutter in 2023',
-                date: '2 days ago - 20 min long',
-                articleImage: 'images/profile.jpg',
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.0),
-              child: BuildRessArticleSection(
-                autor: 'Michel adjetey',
-                title: 'How to learn \nFlutter in 2023',
-                date: '2 days ago - 20 min long',
-                articleImage: 'images/profile.jpg',
+            SizedBox(
+              height: 60.h,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+                child: FutureBuilder(
+                  future: articles.initArticles('Maths'),
+                  builder: (ctx, snapshot) {
+                    switch (snapshot.connectionState) {
+                      case ConnectionState.none:
+                      case ConnectionState.waiting:
+                        return Center(
+                            child: CircularProgressIndicator(
+                          color: AppTheme.darkBlue,
+                        ));
+                      default:
+                        if (snapshot.hasError) {
+                          return Text("Error: ${snapshot.error}");
+                        } else if (!snapshot.hasData) {
+                          return ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            itemBuilder: (context, index) {
+                              List<Article> itemList = articles.allArticles;
+                              return ArticleWidgetLarge(
+                                url: itemList[index].link!,
+                                autor: itemList[index].authorsNamesList![0],
+                                title: itemList[index].title ?? '',
+                              );
+                            },
+                          );
+                        } else {
+                          return const Center(child: Text('An Error occured'));
+                        }
+                    }
+                  },
+                ),
               ),
             ),
           ],

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:study_ai/screens/main_screen.dart';
@@ -132,20 +131,22 @@ class SupabaseManager {
     }
   }
 
-  Future<String?> uploadImage(context, {XFile? imageFile}) async {
+  Future<String?> uploadFile(context, { String? selectedFilePath, String? bucketName }) async {
     try {
-      final bytes = await imageFile!.readAsBytes();
-      final fileExt = imageFile.path.split('.').last;
+
+      XFile selectedFile = XFile( selectedFilePath!);
+      final bytes = await selectedFile.readAsBytes();
+      final fileExt = selectedFile.path.split('.').last;
       final fileName = '${DateTime.now().toIso8601String()}.$fileExt';
       final filePath = fileName;
-      await client.storage.from('profile_image').uploadBinary(
+      await client.storage.from(bucketName!).uploadBinary(
             filePath,
             bytes,
-            fileOptions: FileOptions(contentType: imageFile.mimeType),
+            fileOptions: FileOptions(contentType: selectedFile.mimeType),
           );
 
       final imageUrlResponse = await client.storage
-          .from('profile_image')
+          .from(bucketName)
           .createSignedUrl(filePath, 60 * 60 * 24 * 365 * 10);
 
       debugPrint(imageUrlResponse);
