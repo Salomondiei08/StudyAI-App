@@ -5,12 +5,13 @@ class AppDropDowwn extends StatelessWidget {
       {super.key,
       required this.dropdownvalue,
       this.onChanged,
-      required this.itemList,
-      required this.hintText});
+      required this.hintText,
+      this.items});
 
   final String dropdownvalue;
   final void Function(String?)? onChanged;
-  final List<String> itemList;
+  final List<DropdownMenuItem<String>>? items;
+
   final String hintText;
   @override
   Widget build(BuildContext context) {
@@ -35,9 +36,7 @@ class AppDropDowwn extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         elevation: 4,
         value: dropdownvalue,
-        items: itemList
-            .map((items) => DropdownMenuItem(child: Text(items), value: items))
-            .toList(),
+        items: items,
         onChanged: onChanged,
         icon: const Icon(Icons.keyboard_arrow_down),
       ),

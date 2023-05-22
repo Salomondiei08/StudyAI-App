@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
 import 'package:study_ai/theme/app_theme.dart';
+import '../network/supa_base_client.dart';
 import '../widgets/app_textfield.dart';
 import '../widgets/main_button.dart';
 
@@ -14,6 +15,34 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  final _supabaseClient = SupabaseManager();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _nameController = TextEditingController();
+  bool _isLoading = false;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void signUpUser() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    await _supabaseClient.signUpUser(context,
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+        username: _nameController.text.trim());
+
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,20 +82,23 @@ class _SignupScreenState extends State<SignupScreen> {
               SizedBox(
                 height: 5.h,
               ),
-              const AppTextField(
+              AppTextField(
+                textController: _nameController,
                 labelText: 'Name',
               ),
               SizedBox(
                 height: 3.h,
               ),
-              const AppTextField(
+              AppTextField(
+                textController: _emailController,
                 labelText: 'Email',
                 iconData: Icons.email_outlined,
               ),
               SizedBox(
                 height: 3.h,
               ),
-              const AppTextField(
+              AppTextField(
+                textController: _passwordController,
                 labelText: 'Password',
                 iconData: Icons.security_rounded,
                 obscureText: true,
@@ -75,14 +107,18 @@ class _SignupScreenState extends State<SignupScreen> {
                 height: 6.h,
               ),
               MainButton(
-                child: Text(
-                  'SIGN UP',
-                  style: GoogleFonts.roboto(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18.sp),
-                ),
-                onPressed: () {},
+                onPressed: () => signUpUser(),
+                child: _isLoading
+                    ? const CircularProgressIndicator(
+                        color: Colors.white,
+                      )
+                    : Text(
+                        'SIGN UP',
+                        style: GoogleFonts.roboto(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.sp),
+                      ),
               ),
               SizedBox(
                 height: 3.h,
