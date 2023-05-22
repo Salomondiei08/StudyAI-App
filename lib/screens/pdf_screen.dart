@@ -1,6 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:study_ai/screens/pdfchat_screen.dart';
+import 'package:study_ai/screens/quizz_pdf_screen.dart';
 
 import '../theme/app_theme.dart';
 import '../utils/constants.dart';
@@ -144,8 +145,12 @@ class _ChatPdfScreenState extends State<ChatPdfScreen> {
                             builder: (context) => const FlashPdfScreen()));
                       },
                     ),
-                    const MainButton(
+                    MainButton(
                       text: 'Quiz PDF',
+                      action:() {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => QuizScreen()));
+                      },
                     ),
                   ],
                 ),
