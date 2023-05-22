@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               children: [
                 // header
-                const BuildHeader(
+                 BuildHeader(
                   username: client.auth.currentUser!.email!.split('@').first,
                 ),
                 //Flashcards section
