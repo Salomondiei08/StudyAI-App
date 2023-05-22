@@ -1,6 +1,12 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:typewritertext/typewritertext.dart';
 import '../models/chat_models.dart';
+import '../network/app_urls.dart';
+import '../network/ko_exception.dart';
 import '../theme/app_theme.dart';
 import '../utils/constants.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -18,6 +24,31 @@ class _ChatScreenState extends State<ChatScreen> {
   final TextEditingController _textController = TextEditingController();
   final _scrollController = ScrollController();
 
+  Future<void> sendMessage(String message) async {
+    try {
+      final response = await post(Uri.parse("${AppUrl.chat}$message"));
+      debugPrint("--- Chat request ${AppUrl.chat}$message");
+
+      if (response.statusCode == 200) {
+        final dynamic data = json.decode(response.body);
+        debugPrint("--- Response Data for docs : $data");
+        _messages.add(ChatMessage(content: data, is_bot_text: true));
+      } else {
+        throw Exception(
+            'Could not parse response. erroe code ${response.statusCode}');
+      }
+    } on DioError catch (e) {
+      if (e.response != null && e.response!.statusCode != null) {
+        throw KoException(
+          statusCode: e.response!.statusCode!,
+          message: e.response!.data.toString(),
+        );
+      } else {
+        throw Exception(e.message);
+      }
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -33,7 +64,7 @@ class _ChatScreenState extends State<ChatScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const CircleAvatar(
-              backgroundImage: AssetImage('images/profile.jpg'),
+              backgroundImage: AssetImage('images/app_logo.png'),
               radius: 20,
             ),
             SizedBox(
@@ -96,12 +127,15 @@ class _ChatScreenState extends State<ChatScreen> {
           disabledBorder: kChatInput,
           focusedBorder: kChatInput,
           suffixIcon: IconButton(
-            onPressed: () {
+            onPressed: () async {
               setState(() {
                 _messages.add(ChatMessage(
                     content: _textController.text, is_bot_text: false));
                 isLoading = true;
               });
+              await sendMessage(_textController.text);
+
+              setState(() {});
               // on recupere la saisie de l'user au sein d'une variable et on vide le texfield
               var input = _textController.text;
               _textController.clear();
@@ -126,11 +160,13 @@ class _ChatScreenState extends State<ChatScreen> {
       child: Container(
         color: Colors.grey[600],
         child: IconButton(
-          onPressed: () {
+          onPressed: () async {
+            await sendMessage(_textController.text);
             // afficher l'entrée de l'utilisateur
             setState(() {
               _messages.add(ChatMessage(
                   content: _textController.text, is_bot_text: false));
+
               isLoading = true;
             });
             // on recupere la saisie de l'user au sein d'une variable et on vide le texfield
@@ -190,7 +226,7 @@ class ChatMessageWidget extends StatelessWidget {
       padding: const EdgeInsets.all(15),
       child: is_bot_text == true
           ? Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Flexible(
                   child: Container(

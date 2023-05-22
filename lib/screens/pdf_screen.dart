@@ -62,6 +62,9 @@ class _ChatPdfScreenState extends State<ChatPdfScreen> {
 
       try {
         final response = await get(Uri.parse("${AppUrl.loadPdf}$fileLink"));
+
+          debugPrint("${AppUrl.loadPdf}$fileLink");
+
         if (response.statusCode == 200) {
           final dynamic data = json.decode(response.body);
           debugPrint("--- Response Data for docs : $data");
@@ -170,7 +173,7 @@ class _ChatPdfScreenState extends State<ChatPdfScreen> {
                   children: [
                     MainButton(
                       child: Text(
-                        'chat',
+                        'PDF Chat',
                         style: GoogleFonts.roboto(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -183,7 +186,7 @@ class _ChatPdfScreenState extends State<ChatPdfScreen> {
                     ),
                     MainButton(
                       child: Text(
-                        'chat',
+                        'Summarize Chat',
                         style: GoogleFonts.roboto(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -212,7 +215,7 @@ class _ChatPdfScreenState extends State<ChatPdfScreen> {
                             MaterialPageRoute(
                                 builder: (context) => const QuizScreen())),
                         child: Text(
-                          'Flash PDF',
+                          'Quiz PDF',
                           style: GoogleFonts.roboto(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
